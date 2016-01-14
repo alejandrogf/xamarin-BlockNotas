@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--La primera line de un xaml siempre en la firma para saber que es un XAML-->
+<!--El contenido simbre se incluye en contentPage-->
+<!--Como es un meta-lenguaje,puede incluir otros lenguajes, por lo que debe inluir una serie de normas
+ya que para lo que sirve es para trasformar este fichero en otra cosa. En este caso se convertira en una presnetación,
+por lo que si no seguimos esas normas el fichero no comprendera lo que le estamos indicando para cada lenguaje-->
+
+<!--Un XAML solo puede tener un documento/etiqueta raiz, solo puede incluir un ContentPage o XXXXPage-->
+
+<!--Una pantalla se compone de un Page, que tiene un Layout y este está compuesto por varios view (que son controles
+casillas de buscar, botones, imagenes, etc)-->
+<!-- xmlns="http://xamarin.com/schemas/2014/forms" Importa el name space que incluye el documento primario de formato con los esquemas/reglas necesarios para Xamarin.Forms-->
+<!-- xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"Importa el name space que incluye otro docuemtno de formato que define los esquemas/reglas para Microsoft-->
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BlockNotas09.View.Login">
+  <StackLayout Orientation="Vertical">
+    <!--con el binding indicas que la información de ese campo se extra de otro lado, en este caso del viewmodel
+        Por defecto son de tipo one-way, los cambios se refeljan en el viewmodel. Por ejemplo en una caja de texto que pones
+        algo y el viewmodel recibe esa información.
+        Two-way es cuando es de ida y vuelta, por ejemplo un cuadro de texto para buscar.-->
+    <Label Text="{Binding TituloLogin}"></Label>
+    <Entry Text="{Binding Usuario.Login}"></Entry>
+    
+    <Label Text="{Binding TituloPassword}"></Label>
+    <Entry Text="{Binding Usuario.Password}"></Entry>
+    
+    <StackLayout Orientation="Horizontal">
+      <Button Text="{Binding TituloIniciar}"></Button>
+      <Button Text="{Binding TituloRegistro}"></Button>
+    </StackLayout>
+    
+  </StackLayout>
+  
+</ContentPage>
