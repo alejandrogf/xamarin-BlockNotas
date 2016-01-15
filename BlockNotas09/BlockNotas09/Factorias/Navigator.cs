@@ -20,7 +20,7 @@ namespace BlockNotas09.Factorias
         private readonly IViewFactory _viewFactory;
         //private readonly IPage _page;
 
-        public Navigator(Lazy<INavigation> navigation, IViewFactory viewFactory, IPage page)
+        public Navigator(Lazy<INavigation> navigation, IViewFactory viewFactory)//, IPage page)
         {
             _navigation = navigation;
             _viewFactory = viewFactory;

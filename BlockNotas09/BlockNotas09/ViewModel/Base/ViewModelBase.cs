@@ -106,7 +106,8 @@ namespace BlockNotas09.ViewModel.Base
         de esta forma tienes el objeto viewmodel que está trabajando*/
         public void SetState<T>(Action<T> action) where T : class, IViewModel
         {
-            action(this as T);
+            
+            action?.Invoke(this as T);
         }
     }
 }
