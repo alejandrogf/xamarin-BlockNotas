@@ -2,6 +2,7 @@
 using BlockNotas09.Factorias;
 using BlockNotas09.View;
 using BlockNotas09.ViewModel;
+using Xamarin.Forms;
 
 namespace BlockNotas09.Modulo
 {
@@ -14,6 +15,12 @@ namespace BlockNotas09.Modulo
             _application = application;
         }
 
+        public override void ConfigureContainer(ContainerBuilder builder)
+        {
+            base.ConfigureContainer(builder);
+            builder.RegisterModule<BlockModulo>();
+        }
+
         protected override void RegisterViews(IViewFactory viewFactory)
         {
             //Aquí registras los viewmodel y los view, relcionandolos
@@ -24,8 +31,10 @@ namespace BlockNotas09.Modulo
 
         protected override void ConfigureApplication(IContainer container)
         {
-            var main = container.Resolve<Login>();
-            _application.MainPage = main;
+            var viewFactory = container.Resolve<IViewFactory>();
+            var main = viewFactory.Resolve<LoginViewModel>();
+            var navpage=new NavigationPage(main);
+            _application.MainPage = navpage;
         }
     }
 }

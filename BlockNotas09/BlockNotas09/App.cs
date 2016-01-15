@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using BlockNotas09.Modulo;
 using Xamarin.Forms;
 /*Es el que se encarga de iniciar la pantalla principal*/
 namespace BlockNotas09
@@ -11,9 +11,8 @@ namespace BlockNotas09
     {
         public App()
         {
-            // The root page of your application
-           //En vez de hacerlo directamente aquí, lo hacemos con un fichero
-
+            var start=new Startup(this);
+            start.Run();
         }
 
         protected override void OnStart()

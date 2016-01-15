@@ -1,6 +1,8 @@
 ﻿using System;
 using Autofac;
 using BlockNotas09.Service;
+using BlockNotas09.View;
+using BlockNotas09.ViewModel;
 using Xamarin.Forms;
 
 namespace BlockNotas09.Modulo
@@ -10,6 +12,16 @@ namespace BlockNotas09.Modulo
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<ServicioDatosImpl>().As<IServicioDatos>().SingleInstance();
+
+            //Se registran las view y viewmodel
+            builder.RegisterType<Login>();
+            builder.RegisterType<Principal>();
+            builder.RegisterType<Registro>();
+            builder.RegisterType<LoginViewModel>();
+            builder.RegisterType<PrincipalViewModel>();
+            builder.RegisterType<RegistroViewModel>();
+
+
             //Es una funcion como las de javascript de var = function.....
             builder.RegisterInstance<Func<Page>>(() =>
             {   /*Se busca primero si es masterdetailpage porque hay algunos tipos de páginas, 
