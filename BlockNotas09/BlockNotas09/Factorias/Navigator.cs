@@ -18,13 +18,13 @@ namespace BlockNotas09.Factorias
             */
         private readonly Lazy<INavigation> _navigation;
         private readonly IViewFactory _viewFactory;
-        private readonly IPage _page;
+        //private readonly IPage _page;
 
         public Navigator(Lazy<INavigation> navigation, IViewFactory viewFactory, IPage page)
         {
             _navigation = navigation;
             _viewFactory = viewFactory;
-            _page = page;
+            //_page = page;
         }
 
         public INavigation Navigation { get { return _navigation.Value; } }
