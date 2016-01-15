@@ -36,19 +36,37 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="Factorias\INavigator.cs" />
+    <Compile Include="Factorias\IPage.cs" />
     <Compile Include="Factorias\IViewFactory.cs" />
+    <Compile Include="Factorias\Navigator.cs" />
+    <Compile Include="Factorias\PageProxy.cs" />
     <Compile Include="Factorias\ViewFactory.cs" />
     <Compile Include="Model\Block.cs" />
     <Compile Include="Model\Notas.cs" />
     <Compile Include="Model\Usuario.cs" />
+    <Compile Include="Modulo\AutofacBootstraper.cs" />
+    <Compile Include="Modulo\AutofacModule.cs" />
+    <Compile Include="Modulo\BlockModulo.cs" />
+    <Compile Include="Modulo\Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\IServicioDatos.cs" />
     <Compile Include="Service\ServicioDatosImpl.cs" />
     <Compile Include="Util\Cadenas.cs" />
     <Compile Include="ViewModel\Base\IViewModel.cs" />
     <Compile Include="ViewModel\Base\ViewModelBase.cs" />
+    <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\GeneralViewModel.cs" />
+    <Compile Include="ViewModel\PrincipalViewModel.cs" />
+    <Compile Include="ViewModel\RegistroViewModel.cs" />
     <Compile Include="View\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Principal.xaml.cs">
+      <DependentUpon>Principal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Registro.xaml.cs">
+      <DependentUpon>Registro.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -89,9 +107,20 @@
     <None Include="GettingStarted.Xamarin" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="View\Registro.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="View\Login.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="View\Principal.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

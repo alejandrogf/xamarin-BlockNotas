@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 using Xamarin.Forms;
-
+/*Es el que se encarga de iniciar la pantalla principal*/
 namespace BlockNotas09
 {
     public class App : Application
@@ -12,19 +12,8 @@ namespace BlockNotas09
         public App()
         {
             // The root page of your application
-            MainPage = new ContentPage
-            {
-                Content = new StackLayout
-                {
-                    VerticalOptions = LayoutOptions.Center,
-                    Children = {
-                        new Label {
-                            XAlign = TextAlignment.Center,
-                            Text = "Welcome to Xamarin Forms!"
-                        }
-                    }
-                }
-            };
+           //En vez de hacerlo directamente aquí, lo hacemos con un fichero
+
         }
 
         protected override void OnStart()

@@ -27,8 +27,8 @@ casillas de buscar, botones, imagenes, etc)-->
     <Entry Text="{Binding Usuario.Password}"></Entry>
     
     <StackLayout Orientation="Horizontal">
-      <Button Text="{Binding TituloIniciar}"></Button>
-      <Button Text="{Binding TituloRegistro}"></Button>
+      <Button Text="{Binding TituloIniciar}" Command="{Binding cmdLogin}"></Button>
+      <Button Text="{Binding TituloRegistro}" Command="{Binding cmdAlta}"></Button>
     </StackLayout>
     
   </StackLayout>
