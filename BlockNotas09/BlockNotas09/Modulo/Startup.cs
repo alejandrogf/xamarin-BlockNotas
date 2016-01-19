@@ -24,6 +24,7 @@ namespace BlockNotas09.Modulo
         protected override void RegisterViews(IViewFactory viewFactory)
         {
             //Aquí registras los viewmodel y los view, relcionandolos
+            //Esta parte de código dentro de la arquitectura, que es toda igual, difiere según el proyecto.
             viewFactory.Register<LoginViewModel, Login>();
             viewFactory.Register<RegistroViewModel, Registro>();
             viewFactory.Register<PrincipalViewModel, Principal>();

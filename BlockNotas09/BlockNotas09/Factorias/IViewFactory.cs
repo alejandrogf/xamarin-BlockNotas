@@ -1,13 +1,11 @@
 ﻿using System;
 using BlockNotas09.ViewModel.Base;
 using Xamarin.Forms;
-
 /*
 Hay que instalar el nuGet AutoFac que permite gestionar y automatizar la gestión de inyeccion de dependencias
 Luego se crea este interface se encarga de construir vistas su trabajo es hacer que el contenedor de inyeccion 
 de depencias sepa que vista va con que viewmodel y hacer todas las relaciones
 */
-
 namespace BlockNotas09.Factorias
 {
     public interface IViewFactory

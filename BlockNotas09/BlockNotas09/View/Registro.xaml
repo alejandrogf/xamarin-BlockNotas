@@ -16,7 +16,7 @@
     <Label Text="Apellidos"></Label>
     <Entry Text="{Binding Usuario.Apellidos}"></Entry>
     
-    <Button Text="Nuevo Usuario" Command="{Binding cmdRegistro}"></Button>
+    <Button Text="Nuevo Usuario" Command="{Binding cmdAlta}"></Button>
   
   </StackLayout>
 </ContentPage>

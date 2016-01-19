@@ -16,15 +16,16 @@ namespace BlockNotas09.ViewModel
             get { return _usuario; }
             set { SetProperty(ref _usuario, value); }
         }
-
-        private Usuario _usuario;
+        //Como es un objeto primitivo por defecto es null y por eso lo inicializamos
+        private Usuario _usuario=new Usuario();
         public RegistroViewModel(INavigator navigator, IServicioDatos servicio) : base(navigator, servicio)
         {
-            
+            cmdAlta=new Command(GuardarUsuario);
         }
 
         private async void GuardarUsuario()
         {
+            _usuario.Foto = "";
             try
             {
                 IsBusy = true;
