@@ -49,7 +49,7 @@ namespace BlockNotas09.Factorias
             var vista = _componentContext.Resolve(tipoVista) as Page;
             //action = onclick creo... La acción que se hace en ese momento 
             //(darse de alta cuando pulsas el boton darse de alta)
-            if (action==null)
+            if (action!=null)
             {
                 viewModel.SetState(action);
             }

@@ -1,7 +1,9 @@
-﻿using System.Windows.Input;
+﻿using System.Collections.ObjectModel;
+using System.Windows.Input;
 using BlockNotas09.Factorias;
 using BlockNotas09.Model;
 using BlockNotas09.Service;
+using BlockNotas09.Util;
 using Xamarin.Forms;
 
 namespace BlockNotas09.ViewModel
@@ -18,7 +20,9 @@ namespace BlockNotas09.ViewModel
         }
         //Como es un objeto primitivo por defecto es null y por eso lo inicializamos
         private Usuario _usuario=new Usuario();
-        public RegistroViewModel(INavigator navigator, IServicioDatos servicio) : base(navigator, servicio)
+
+        public RegistroViewModel(INavigator navigator, IServicioDatos servicio, Session session) :
+            base(navigator, servicio, session)
         {
             cmdAlta=new Command(GuardarUsuario);
         }
@@ -32,7 +36,12 @@ namespace BlockNotas09.ViewModel
                 var r = await _servicio.AddUsuario(_usuario);
                 if (r!=null)
                 {
-                   await  _navigator.PushModalAsync<PrincipalViewModel>();
+                    Session["usuario"] = r;
+                   await  _navigator.PushModalAsync<PrincipalViewModel>(viewModel =>
+                   {
+                       viewModel.Titulo = "Pantalla Principal";
+                       viewModel.Blocks=new ObservableCollection<Block>();
+                   });
                 }
                 else
                 {

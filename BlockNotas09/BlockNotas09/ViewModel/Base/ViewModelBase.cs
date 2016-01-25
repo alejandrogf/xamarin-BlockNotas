@@ -25,6 +25,7 @@ namespace BlockNotas09.ViewModel.Base
         private bool _isBusy ;
         private double _opacity;
         private bool _enabled;
+        
 
 
         //Manejador del cambio de propiedades.

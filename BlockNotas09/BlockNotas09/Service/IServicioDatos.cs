@@ -20,5 +20,14 @@ namespace BlockNotas09.Service
 
         #endregion
 
+        #region Block
+
+        Task AddBloc(Block block);
+        Task<List<Block>> GetBlocks(String usuario); //Recuperas todos los blocks de un usuario
+        Task DeleteBlock(Block block);
+        Task UpdateBlock(Block block);
+
+        #endregion
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using Autofac;
 using BlockNotas09.Service;
+using BlockNotas09.Util;
 using BlockNotas09.View;
 using BlockNotas09.ViewModel;
 using Xamarin.Forms;
@@ -12,14 +13,18 @@ namespace BlockNotas09.Modulo
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<ServicioDatosImpl>().As<IServicioDatos>().SingleInstance();
+            //Registras la sesión, como single prque queremos que solo haya una
+            builder.RegisterType<Session>().SingleInstance();
 
             //Se registran las view y viewmodel
             builder.RegisterType<Login>();
             builder.RegisterType<Principal>();
             builder.RegisterType<Registro>();
+            builder.RegisterType<NuevoBlockView>();
             builder.RegisterType<LoginViewModel>();
             builder.RegisterType<PrincipalViewModel>();
             builder.RegisterType<RegistroViewModel>();
+            builder.RegisterType<NuevoBlockViewModel>();
 
 
             //Es una funcion como las de javascript de var = function.....

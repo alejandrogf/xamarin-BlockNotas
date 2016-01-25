@@ -1,7 +1,9 @@
-﻿using System.Windows.Input;
+﻿using System.Collections.ObjectModel;
+using System.Windows.Input;
 using BlockNotas09.Factorias;
 using BlockNotas09.Model;
 using BlockNotas09.Service;
+using BlockNotas09.Util;
 using Xamarin.Forms;
 
 namespace BlockNotas09.ViewModel
@@ -13,15 +15,17 @@ namespace BlockNotas09.ViewModel
         public ICommand cmdLogin { get; set; }
         public ICommand cmdAlta { get; set; }
 
-        public LoginViewModel(INavigator navigator, IServicioDatos servicio) : base(navigator, servicio)
+        public LoginViewModel(INavigator navigator, IServicioDatos servicio, Session session) : 
+            base(navigator, servicio, session)
         {
             cmdLogin=new Command(IniciarSesion);
             cmdAlta=new Command(NuevoUsuario);
+            Titulo = "Blocks Powah!";
         }
 
         public string TituloIniciar { get { return "Iniciar sesión"; } }
         public string TituloRegistro { get { return "Nuevo Usuario"; } }
-
+        
         public string TituloLogin { get { return "Nombre de usuario"; } }
         public string TituloPassword { get { return "Contraseña"; } }
 
@@ -40,10 +44,16 @@ namespace BlockNotas09.ViewModel
                 var us = await _servicio.Validar(_usuario);
                 if (us!=null)
                 {
+                    Session["usuario"] = us;//Guardo el usuario
+                    var listadoblocks = await _servicio.GetBlocks(us.Id);
+                    
                     await _navigator.PopToRootAsync();
                     await _navigator.PushAsync<PrincipalViewModel>(viewModel =>
                     {
-                        Titulo = "Pantalla Principal";
+                        //Para pasar objetos a otro viewmodel(y su vista asociada) es aquí
+                        //Si están definidos en el viewmodel destino
+                        viewModel.Titulo = "Pantalla Principal";
+                        viewModel.Blocks=new ObservableCollection<Block>(listadoblocks);    
                     });
                 }
                 else
@@ -63,7 +73,7 @@ namespace BlockNotas09.ViewModel
             await _navigator.PopToRootAsync();
             await _navigator.PushModalAsync<RegistroViewModel>(viewModel =>
             {
-                Titulo = "Registro de Nuevo Usuario";
+                viewModel.Titulo = "Registro de Nuevo Usuario";
             });
         }
     }

@@ -1,6 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BlockNotas09.View.Principal">
-  <Label Text="Has llegado..." VerticalOptions="Center" HorizontalOptions="Center" />
+             x:Class="BlockNotas09.View.Principal" 
+             Title="{Binding Titulo}">
+  <StackLayout>
+    <!--Para obtener el elemento seleccionado se hace con selecteditem y bindearlo
+        Se indica el mode twoway para que se refresque-->
+    <ListView ItemsSource="{Binding Blocks, Mode=TwoWay}" 
+              SelectedItem="{Binding BlockSeleccionado, Mode=TwoWay}">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <TextCell Text="{Binding Nombre}" Detail="{Binding Fecha}"></TextCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+    <Button Text="Nuevo" Command="{Binding cmdNuevo}"></Button>
+  </StackLayout>
 </ContentPage>

@@ -28,6 +28,7 @@ namespace BlockNotas09.Modulo
             viewFactory.Register<LoginViewModel, Login>();
             viewFactory.Register<RegistroViewModel, Registro>();
             viewFactory.Register<PrincipalViewModel, Principal>();
+            viewFactory.Register<NuevoBlockViewModel, NuevoBlockView>();
         }
 
         protected override void ConfigureApplication(IContainer container)

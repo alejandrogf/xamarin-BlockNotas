@@ -14,7 +14,8 @@ casillas de buscar, botones, imagenes, etc)-->
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BlockNotas09.View.Login">
+             x:Class="BlockNotas09.View.Login"
+             Title="{Binding Titulo}">
   <StackLayout Orientation="Vertical">
     <!--con el binding indicas que la información de ese campo se extra de otro lado, en este caso del viewmodel
         Por defecto son de tipo one-way, los cambios se refeljan en el viewmodel. Por ejemplo en una caja de texto que pones

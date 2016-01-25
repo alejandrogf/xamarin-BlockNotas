@@ -19,13 +19,15 @@ namespace BlockNotas09.Service
             cliente=new MobileServiceClient(Cadenas.UrlServicio,Cadenas.TokenServicio);
         }
 
+        //Operaciones de USUARIO
+        #region USUARIO
 
         public async Task<Usuario> Validar(Usuario usuario)
         {
             var tabla = cliente.GetTable<Usuario>();
             var data = await tabla.CreateQuery().
-                       Where(o => o.Login == usuario.Login && o.Password == usuario.Password).
-                       ToListAsync();
+                Where(o => o.Login == usuario.Login && o.Password == usuario.Password).
+                ToListAsync();
             if (data.Count == 0)
             {
                 return null;
@@ -38,7 +40,7 @@ namespace BlockNotas09.Service
             var tabla = cliente.GetTable<Usuario>();
             var data = await tabla.CreateQuery().Where(o => o.Login == usuario.Login).ToListAsync();
 
-            if (data.Count>0)
+            if (data.Count > 0)
             {
                 throw new Exception("Usuario ya registrado.");
             }
@@ -63,5 +65,45 @@ namespace BlockNotas09.Service
         {
             throw new NotImplementedException();
         }
+
+        #endregion
+
+        //Operaciones de BLOCK
+        #region BLOCK
+
+        public async Task AddBloc(Block block)
+        {
+            //Con gettable recuperas el formato de la tabla que le indicas.
+            var tabla = cliente.GetTable<Block>();
+            //Insertas en la tabla formateada el objeto recibido
+            await tabla.InsertAsync(block);
+        }
+
+        public async Task<List<Block>> GetBlocks(string usuario)
+        {
+            var tabla = cliente.GetTable<Block>();
+            //Se recuperan los blocks del usuario recibido, con la expresión lambda y se guardan
+            //en una lista
+            var data = await tabla.CreateQuery().Where(o => o.IdUsuario == usuario).ToListAsync();
+            return data;
+        }
+        //Como usamos azure mobile services hay que ceñirnos a su arquitectura, por eso el delete y update
+        //lo haces pasando el block entero
+        public async Task DeleteBlock(Block block)
+        {
+            //Para borrar, mejor pasar el block entero, no solo el ID
+            var tabla = cliente.GetTable<Block>();
+            await tabla.DeleteAsync(block);
+        }
+
+        public async Task UpdateBlock(Block block)
+        {
+            var tabla = cliente.GetTable<Block>();
+            await tabla.UpdateAsync(block);
+        }
+
+        #endregion
+
+
     }
 }
